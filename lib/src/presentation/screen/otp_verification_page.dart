@@ -18,7 +18,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.lightGreyColor,
         elevation: 0,
         title: const Text('Verification', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600)),
         leading: IconButton(

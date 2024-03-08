@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gop_mobile_ui/core/app_color.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/home_page.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/signup_page.dart';
 
 class SigninPage extends StatefulWidget {
@@ -30,12 +31,13 @@ class _SigninPageState extends State<SigninPage> {
         backgroundColor: AppColor.lightGreyColor,
         elevation: 0,
         title: const Text('Sign in', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600)),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset('assets/icons/Arrow-left.svg'),
-        ), systemOverlayStyle: SystemUiOverlayStyle.light,
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        //   icon: SvgPicture.asset('assets/icons/Arrow-left.svg'),
+        // ),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       bottomNavigationBar: Container(
         width: MediaQuery.of(context).size.width,
@@ -81,7 +83,7 @@ class _SigninPageState extends State<SigninPage> {
           Container(
             margin: const EdgeInsets.only(top: 20, bottom: 12),
             child: const Text(
-              'Welcome Back Mate ! 😁',
+              'Welcome Back !',
               style: TextStyle(
                 color: AppColor.blackColor,
                 fontWeight: FontWeight.w700,
@@ -167,7 +169,7 @@ class _SigninPageState extends State<SigninPage> {
           // Sign In button
           ElevatedButton(
             onPressed: () {
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageSwitcher()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18), backgroundColor: AppColor.primaryColor,
