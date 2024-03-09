@@ -7,13 +7,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gop_mobile_ui/main.dart';
 
 void main() {
+  
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    // await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(sharedPreferences: await SharedPreferences.getInstance()));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

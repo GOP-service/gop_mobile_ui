@@ -20,7 +20,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.sharedPreferences});
+  const MyApp({Key? key, required this.sharedPreferences});
 
   final SharedPreferences sharedPreferences;
 
