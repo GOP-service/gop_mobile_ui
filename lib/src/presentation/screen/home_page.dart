@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/gopfood_page.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/restaurant_page.dart';
+
+import '../../../core/app_color.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,9 +13,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Widget'),
       ),
-      body: const Center(
-        child: Text('Hello, World!'),
-      ),
-    );
+      body:  Center(
+        child:
+        // Text('Hello, World!'),
+        ElevatedButton(onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const GoPFoodPage()));} , 
+          child: Text("Go food",style: TextStyle(color: AppColor.primaryColor),),))
+      );
   }
 }
