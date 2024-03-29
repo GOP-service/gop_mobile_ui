@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/gopfood_page.dart';
-import 'package:gop_mobile_ui/src/presentation/screen/restaurant_page.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/gop_food/restauranthome_page.dart';
 
 import '../../../core/app_color.dart';
 

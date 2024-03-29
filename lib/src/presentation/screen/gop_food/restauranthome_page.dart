@@ -4,16 +4,16 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-import '../../../core/app_color.dart';
+import '../../../../core/app_color.dart';
 
-class RestaurantPage extends StatefulWidget {
-  const RestaurantPage({super.key});
+class RestaurantHomePage extends StatefulWidget {
+  const RestaurantHomePage({super.key});
 
   @override
-  State<RestaurantPage> createState() => _RestaurantState();
+  State<RestaurantHomePage> createState() => _RestaurantHomeState();
 }
 
-class _RestaurantState extends State<RestaurantPage> {
+class _RestaurantHomeState extends State<RestaurantHomePage> {
   double height = 0;
   double width = 0;
 
@@ -30,50 +30,55 @@ class _RestaurantState extends State<RestaurantPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-          // centerTitle: true,
-          title: _btnLocation("238A Hoàng Diệu 2"),
-          backgroundColor: Colors.transparent,
-          // elevation: 1,
-          leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [_btnBack()]),
-          actions: [_btnFavorites()]),
-      body: FormBuilder(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+            // centerTitle: true,
+            title: _btnLocation("238A Hoàng Diệu 2"),
+            backgroundColor: Colors.transparent,
+            // elevation: 1,
+            leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [_btnBack()]),
+            actions: [_btnFavorites()]),
+        body: FormBuilder(
           key: _formKey,
           child: SingleChildScrollView(
               // controller: _scrollController,
               scrollDirection: Axis.vertical,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _bodyHeader(),
-                  const SizedBox(height: 20),
-                  Container(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _btnInteractive('assets/icons/Circle-plus.svg',
-                                'GoPFood', 'Plus'),
-                            _btnInteractive(
-                                'assets/icons/Percent.svg', 'Tất cả', 'Ưu đãi'),
-                            _btnInteractive(
-                                'assets/icons/Tags.svg', 'GoPFood', 'Pickup')
-                          ])),
-                  const SizedBox(height: 20),
-                  _discountButtons(8),
-                  const SizedBox(height: 20),
-                  _famousBrand(),
-                  const SizedBox(height: 20),
-                  _deliciousFood(),
-                  const SizedBox(height: 20),
-                  _suggestFood(),
-                  const SizedBox(height: 20),
-                ],
-              ))),
-    );
+              child: Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width,
+                  constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _bodyHeader(),
+                      const SizedBox(height: 20),
+                      Container(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                _btnInteractive('assets/icons/Circle-plus.svg',
+                                    'GoPFood', 'Plus'),
+                                _btnInteractive('assets/icons/Percent.svg',
+                                    'Tất cả', 'Ưu đãi'),
+                                _btnInteractive('assets/icons/Tags.svg',
+                                    'GoPFood', 'Pickup')
+                              ])),
+                      const SizedBox(height: 20),
+                      _discountButtons(8),
+                      const SizedBox(height: 20),
+                      _famousBrand(),
+                      const SizedBox(height: 20),
+                      _deliciousFood(),
+                      const SizedBox(height: 20),
+                      _suggestFood(),
+                      const SizedBox(height: 40),
+                    ],
+                  ))),
+        ));
   }
 
   Widget _btnBack() {
@@ -204,15 +209,16 @@ class _RestaurantState extends State<RestaurantPage> {
   Widget _btnInteractive(String url, String note, String name) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            // elevation: 5,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
-            fixedSize: Size(width * 0.27, height * 0.13),
-            // shadowColor: Colors.black,
-            side: const BorderSide(
-                color: Colors.grey, // Border color
-                width: 2)),
+          backgroundColor: Colors.white,
+          // elevation: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          fixedSize: Size(width * 0.27, height * 0.13),
+          // shadowColor: Colors.black,
+          side: const BorderSide(
+              color: Colors.grey, // Border color
+              width: 2),
+        ),
         onPressed: () {},
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -427,9 +433,10 @@ class _RestaurantState extends State<RestaurantPage> {
             onPressed: () {},
             child: Column(
               children: [
+                const SizedBox(height:5),
                 Container(
-                    width: width * 0.17,
-                    height: width * 0.17,
+                    width: width * 0.15,
+                    height: width * 0.15,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.grey, width: 0.5)),

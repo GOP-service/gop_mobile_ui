@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/gop_food/restaurantpickup_page.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/home_page.dart';
-import 'package:gop_mobile_ui/src/presentation/screen/restaurant_page.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/gop_food/restauranthome_page.dart';
 
 import '../../../core/app_color.dart';
 
@@ -16,11 +17,11 @@ class _GoPFoodState extends State<GoPFoodPage> {
   int _selectedIndex = 0;
   PageController _pageController = PageController();
   List<Widget> _pages = [
-    RestaurantPage(),
+    RestaurantHomePage(),
+    RestaurantPickupPage(),
+    RestaurantHomePage(),
     HomePage(),
-    RestaurantPage(),
-    HomePage(),
-    RestaurantPage()
+    RestaurantHomePage()
   ];
   List<Map<String, String>> lstBottomItem = [
     {'name': 'Khám phá', 'url': 'assets/icons/Compass.svg'},
