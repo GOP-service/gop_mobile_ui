@@ -6,14 +6,14 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:gop_mobile_ui/core/app_color.dart';
 import 'package:intl/intl.dart';
 
-class FoodDetailPage extends StatefulWidget {
-  const FoodDetailPage({super.key});
+class FoodToppingPage extends StatefulWidget {
+  const FoodToppingPage({super.key});
 
   @override
-  State<FoodDetailPage> createState() => _FoodDetailState();
+  State<FoodToppingPage> createState() => _FoodToppingState();
 }
 
-class _FoodDetailState extends State<FoodDetailPage> {
+class _FoodToppingState extends State<FoodToppingPage> {
   double height = 0;
   double width = 0;
 

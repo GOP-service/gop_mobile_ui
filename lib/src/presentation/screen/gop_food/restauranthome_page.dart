@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:gop_mobile_ui/core/app_icon.dart';
+import 'package:gop_mobile_ui/core/app_image.dart';
 
 import '../../../../core/app_color.dart';
 
@@ -19,9 +21,17 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
 
   int currentAdsPage = 0;
 
+  // ignore: unused_field
   int _selectedIndex = 0;
 
   List<Widget> imageSliders = [];
+  List<String> urlSliders = [
+    "https://pano.vn/wp-content/uploads/2021/05/quang-cao-xe-buyt-cho-go-viet-9.jpg",
+    "https://amis.misa.vn/wp-content/uploads/2022/11/chien-luoc-marketing-cua-gojek-6.jpg",
+    "https://gofood.vn/upload/r/slider/gofood-tang-30k-banner-mobile.jpg",
+    "https://azgroup.net.vn/wp-content/uploads/2020/03/quang-cao-go-viet-cho-nha-hang-quan-an-1.jpeg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4iShCilsWm8H-cTQoycUaHiPBpJTMe3wrPQ&usqp=CAU",
+  ];
 
   // ScrollController _scrollController = ScrollController();
 
@@ -56,16 +66,16 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
                       _bodyHeader(),
                       const SizedBox(height: 20),
                       Container(
-                          padding: EdgeInsets.only(left: 20, right: 20),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                _btnInteractive('assets/icons/Circle-plus.svg',
-                                    'GoPFood', 'Plus'),
-                                _btnInteractive('assets/icons/Percent.svg',
-                                    'Tất cả', 'Ưu đãi'),
-                                _btnInteractive('assets/icons/Tags.svg',
-                                    'GoPFood', 'Pickup')
+                                _btnInteractive(
+                                    AppIcon.icCirclePlus, 'GoPFood', 'Plus'),
+                                _btnInteractive(
+                                    AppIcon.icPercent, 'Tất cả', 'Ưu đãi'),
+                                _btnInteractive(
+                                    AppIcon.icTags, 'GoPFood', 'Pickup')
                               ])),
                       const SizedBox(height: 20),
                       _discountButtons(8),
@@ -84,13 +94,13 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
   Widget _btnBack() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           backgroundColor: Colors.white,
-          padding: EdgeInsets.all(0.0)),
+          padding: const EdgeInsets.all(0.0)),
       onPressed: () {
         Navigator.pop(context);
       },
-      child: SvgPicture.asset('assets/icons/Xmark.svg', width: 24, height: 24),
+      child: SvgPicture.asset(AppIcon.icXmark, width: 24, height: 24),
     );
   }
 
@@ -100,14 +110,14 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(35.0)),
-                backgroundColor: Color.fromRGBO(0, 0, 0, 0.5),
+                backgroundColor: const Color.fromRGBO(0, 0, 0, 0.5),
                 padding: const EdgeInsets.all(10.0)),
             onPressed: () {
               // Navigator.pop(context);
             },
             child: Row(
               children: [
-                _imgSVG('assets/icons/Location-dot.svg', 24, 24, Colors.white),
+                _imgSVG(AppIcon.icLocationDot, 24, 24, Colors.white),
                 const SizedBox(width: 10),
                 Text(location, style: const TextStyle(color: Colors.white))
               ],
@@ -117,14 +127,13 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
   Widget _btnFavorites() {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             backgroundColor: Colors.white,
             padding: const EdgeInsets.all(0.0)),
         onPressed: () {
           // Navigator.pop(context);
         },
-        child:
-            SvgPicture.asset('assets/icons/Heart.svg', width: 20, height: 20));
+        child: SvgPicture.asset(AppIcon.icHeart, width: 20, height: 20));
   }
 
   Widget _bodyHeader() {
@@ -157,7 +166,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
         enlargeCenterPage: true,
         onPageChanged: (index, reason) {
           setState(() {
-            this.currentAdsPage = index;
+            currentAdsPage = index;
           });
         },
       ),
@@ -197,11 +206,11 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
             ]),
         child: Row(children: [
           const SizedBox(width: 15),
-          _imgSVG('assets/icons/Magnifying-glass.svg', 20, 20, Colors.black),
+          _imgSVG(AppIcon.icMagnifyingGlass, 20, 20, Colors.black),
           const SizedBox(width: 10),
           const Text("Bạn đang thèm món gì", style: TextStyle(fontSize: 18)),
-          Spacer(),
-          _imgSVG('assets/icons/Spoon.svg', 20, 20, Colors.red),
+          const Spacer(),
+          _imgSVG(AppIcon.icSpoon, 20, 20, Colors.red),
           const SizedBox(width: 15),
         ]));
   }
@@ -267,8 +276,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
                   padding: EdgeInsets.all(8),
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle, color: Colors.yellow),
-                  child:
-                      _imgSVG('assets/icons/Ticket.svg', 24, 24, Colors.red))),
+                  child: _imgSVG(AppIcon.icTicket, 24, 24, Colors.red))),
           Expanded(
               flex: 2,
               child: Text('Bạn có $discount ưu đãi',
@@ -277,7 +285,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold))),
           const Spacer(),
-          _imgSVG('assets/icons/Circle-arrow-right.svg', 24, 24, Colors.red),
+          _imgSVG(AppIcon.icCircleArrowRight, 24, 24, Colors.red),
           const SizedBox(width: 5)
         ]));
   }
@@ -298,26 +306,16 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
   Widget _lstFamousBrandButton() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          _famousBrandButton(
-              "https://media.be.com.vn/bizops/image/e9bf3ca3-2520-11ee-bfaa-82e52b34e173/resized_thumbnail_w480_h480",
-              "Mì Trộn Sa Tế Huy Mập",
-              isFirst: true),
-          _famousBrandButton(
-              "https://media.baamboozle.com/uploads/images/124868/1652552577_286800.jpeg",
-              "Lotteria"),
-          _famousBrandButton(
-              "https://tea-3.lozi.vn/v1/images/resized/tutimi-tra-sua-dong-chai-quan-go-vap-ho-chi-minh-1626860264556453767-eatery-avatar-1626860354?w=640&type=s",
-              "Tutimi"),
-          _famousBrandButton(
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEVq99xr3zKyOH_dBvqRwo3GvwCXCDkOc3Ow&usqp=CAU",
-              "Cơm Tấm Phúc Lộc Thọ"),
-          _famousBrandButton(
-              "https://data.vieclamtphcm.vn/static-bucket/2022/8/22/70cf7a2ae9a2d0cdf42c1b0616c19308-2786648373615583574.jpg",
-              "Hồng Trà Ngô Gia"),
-        ],
-      ),
+      child: Row(children: [
+        _famousBrandButton(
+            AppImage.imgMiTronSaTeHuyMap, "Mì Trộn Sa Tế Huy Mập",
+            isFirst: true),
+        _famousBrandButton(AppImage.imgLotteria, "Lotteria"),
+        _famousBrandButton(AppImage.imgTutimi, "Tutimi"),
+        _famousBrandButton(
+            AppImage.imgComTamPhucLocTho, "Cơm Tấm Phúc Lộc Thọ"),
+        _famousBrandButton(AppImage.imgHongTrNgoGia, "Hồng Trà Ngô Gia"),
+      ]),
     );
   }
 
@@ -401,28 +399,19 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(children: [
-          _deliciousFoodButton(
-              'assets/images/food_categories/com_nong_sot.png', "Cơm nóng sốt",
+          _deliciousFoodButton(AppImage.imgComNongSot, "Cơm nóng sốt",
               isFirst: true),
-          _deliciousFoodButton(
-              'assets/images/food_categories/nong_hoi_xi_xup.png',
-              "Nóng hổi xì xụp"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/banh_mi_ngon.png', "Bánh mì ngon"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/my_vi_hai_san.png',
-              "Mỹ vị hải sản"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/thuc_an_nhanh.png',
-              "Thức ăn nhanh"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/tra_sua_ngot.png', "Trà sữa ngọt"),
+          _deliciousFoodButton(AppImage.imgNongHoiXiXup, "Nóng hổi xì xụp"),
+          _deliciousFoodButton(AppImage.imgBanhMiNgon, "Bánh mì ngon"),
+          _deliciousFoodButton(AppImage.imgMyViHaiSan, "Mỹ vị hải sản"),
+          _deliciousFoodButton(AppImage.imgThucAnNhanh, "Thức ăn nhanh"),
+          _deliciousFoodButton(AppImage.imgTraSuaNgot, "Trà sữa ngọt"),
         ]));
   }
 
   Widget _deliciousFoodButton(String url, String name, {bool isFirst = false}) {
     return Container(
-        margin: isFirst ? EdgeInsets.only(left: 0) : EdgeInsets.only(left: 15),
+        margin: EdgeInsets.only(left: isFirst ? 0 : 15),
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -433,7 +422,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
             onPressed: () {},
             child: Column(
               children: [
-                const SizedBox(height:5),
+                const SizedBox(height: 5),
                 Container(
                     width: width * 0.15,
                     height: width * 0.15,
@@ -443,7 +432,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
                     child:
                         ClipOval(child: Image.asset(url, fit: BoxFit.cover))),
                 Container(
-                    margin: EdgeInsets.only(top: 5),
+                    margin: const EdgeInsets.only(top: 5),
                     width: width * 0.24,
                     child: Text(name,
                         style: const TextStyle(
@@ -559,7 +548,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
             child: Row(
               children: [
                 const SizedBox(width: 6),
-                _imgSVG('assets/icons/Star.svg', 10, 10, Colors.white),
+                _imgSVG(AppIcon.icStar, 10, 10, Colors.white),
                 const SizedBox(width: 6),
                 Text(rate.toString(),
                     style: const TextStyle(
@@ -587,7 +576,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
                     padding: const EdgeInsets.all(1.0),
                     child: Row(children: [
                       const SizedBox(width: 6),
-                      _imgSVG('assets/icons/Motorcycle.svg', 13, 13,
+                      _imgSVG(AppIcon.icMotorcycle, 13, 13,
                           Colors.grey.shade900),
                       const SizedBox(width: 6),
                       Text("$time phút",
@@ -629,7 +618,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
   Widget _foodInformation(String foodName, String fodCategory) {
     return Container(
         width: width * 0.9,
-        padding: EdgeInsets.only(top: 10, left: 15),
+        padding: const EdgeInsets.only(top: 10, left: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -653,7 +642,7 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _imgSVG('assets/icons/Percent.svg', 20, 20, Colors.red),
+          _imgSVG(AppIcon.icPercent, 20, 20, Colors.red),
           const SizedBox(width: 7),
           Text(discount,
               style: const TextStyle(
@@ -663,49 +652,25 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
     );
   }
 
+  Widget _imgSlider(String url) {
+    return ClipRRect(
+        child: Image.network(url,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity));
+  }
+
   void _addAdvertiseImage() {
-    imageSliders.add(ClipRRect(
-        child: Image.network(
-      "https://pano.vn/wp-content/uploads/2021/05/quang-cao-xe-buyt-cho-go-viet-9.jpg",
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-    )));
-    imageSliders.add(ClipRRect(
-        child: Image.network(
-      "https://amis.misa.vn/wp-content/uploads/2022/11/chien-luoc-marketing-cua-gojek-6.jpg",
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-    )));
-    imageSliders.add(ClipRRect(
-        child: Image.network(
-      "https://gofood.vn/upload/r/slider/gofood-tang-30k-banner-mobile.jpg",
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-    )));
-    imageSliders.add(ClipRRect(
-        child: Image.network(
-      "https://azgroup.net.vn/wp-content/uploads/2020/03/quang-cao-go-viet-cho-nha-hang-quan-an-1.jpeg",
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-    )));
-    imageSliders.add(ClipRRect(
-        child: Image.network(
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4iShCilsWm8H-cTQoycUaHiPBpJTMe3wrPQ&usqp=CAU",
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-    )));
+    for (int i = 0; i < urlSliders.length; i++) {
+      imageSliders.add(_imgSlider(urlSliders[i]));
+    }
   }
 
   void _setDimension() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        this.width = MediaQuery.of(context).size.width;
-        this.height = MediaQuery.of(context).size.height;
+        width = MediaQuery.of(context).size.width;
+        height = MediaQuery.of(context).size.height;
       });
     });
   }
@@ -716,9 +681,9 @@ class _RestaurantHomeState extends State<RestaurantHomePage> {
     });
   }
 
-  void _printColor() {
-    // double offset = _scrollController.offset;
-  }
+  // void _printColor() {
+  //   double offset = _scrollController.offset;
+  // }
 
   @override
   void initState() {

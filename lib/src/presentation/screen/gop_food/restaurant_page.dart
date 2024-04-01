@@ -4,6 +4,8 @@ import 'package:gop_mobile_ui/core/app_color.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/gop_food/foodtopping_page.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/app_icon.dart';
+
 class RestaurantPage extends StatefulWidget {
   const RestaurantPage({super.key});
 
@@ -64,32 +66,20 @@ class _RestaurantState extends State<RestaurantPage> {
 
   Widget _btnBack() {
     return IconButton(
-      icon: _imgSVG(
-          "assets/icons/Arrow-left-2.svg", 20, 20, Colors.grey.shade700),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
+        icon: _imgSVG(AppIcon.icArrowLeft2, 20, 20, Colors.grey.shade700),
+        onPressed: () => Navigator.pop(context));
   }
 
   Widget _btnSearch() {
     return IconButton(
-      icon: _imgSVG(
-          "assets/icons/Magnifying-glass.svg", 20, 20, Colors.grey.shade700),
-      onPressed: () {
-        // Navigator.pop(context);
-      },
-    );
+        icon: _imgSVG(AppIcon.icMagnifyingGlass, 20, 20, Colors.grey.shade700),
+        onPressed: () {});
   }
 
   Widget _btnInformation() {
     return IconButton(
-      icon:
-          _imgSVG("assets/icons/Circle-info.svg", 20, 20, Colors.grey.shade700),
-      onPressed: () {
-        // Navigator.pop(context);
-      },
-    );
+        icon: _imgSVG(AppIcon.icCircleInfo, 20, 20, Colors.grey.shade700),
+        onPressed: () {});
   }
 
   Widget _btnShare() {
@@ -119,13 +109,14 @@ class _RestaurantState extends State<RestaurantPage> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(35.0)),
             backgroundColor: Colors.red,
-            fixedSize: Size(100, 40),
-            padding: EdgeInsets.all(0.0)),
+            fixedSize: const Size(100, 40),
+            padding: const EdgeInsets.all(0.0)),
         onPressed: () {},
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          _imgSVG("assets/icons/Bell-concierge.svg", 24, 24, Colors.white),
+          _imgSVG(AppIcon.icBellConcierge, 24, 24, Colors.white),
           const SizedBox(width: 5),
-          Text("Menu", style: TextStyle(color: Colors.white, fontSize: 16))
+          const Text("Menu",
+              style: TextStyle(color: Colors.white, fontSize: 16))
         ]));
   }
 
@@ -320,10 +311,8 @@ class _RestaurantState extends State<RestaurantPage> {
 
   Widget _btnSave() {
     return IconButton(
-      icon: _imgSVG("assets/icons/Heart-2.svg", 24, 24, Colors.grey.shade700),
-      onPressed: () {
-        // Navigator.pop(context);
-      },
+      icon: _imgSVG(AppIcon.icHeart2, 24, 24, Colors.grey.shade700),
+      onPressed: () {}
     );
   }
 
@@ -336,7 +325,10 @@ class _RestaurantState extends State<RestaurantPage> {
             fixedSize: const Size(70, 20),
             padding: const EdgeInsets.all(0.0),
             side: const BorderSide(color: AppColor.primaryColor, width: 1.5)),
-        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FoodToppingPage()));},
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const FoodToppingPage()));
+        },
         child: const Text("Thêm",
             style: TextStyle(color: AppColor.primaryColor, fontSize: 14)));
   }
@@ -344,8 +336,8 @@ class _RestaurantState extends State<RestaurantPage> {
   void _setDimension() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        this.width = MediaQuery.of(context).size.width;
-        this.height = MediaQuery.of(context).size.height;
+        width = MediaQuery.of(context).size.width;
+        height = MediaQuery.of(context).size.height;
       });
     });
   }

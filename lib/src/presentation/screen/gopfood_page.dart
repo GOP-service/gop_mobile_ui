@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gop_mobile_ui/core/app_icon.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/gop_food/restaurantpickup_page.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/home_page.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/gop_food/restauranthome_page.dart';
@@ -24,11 +25,11 @@ class _GoPFoodState extends State<GoPFoodPage> {
     RestaurantHomePage()
   ];
   List<Map<String, String>> lstBottomItem = [
-    {'name': 'Khám phá', 'url': 'assets/icons/Compass.svg'},
-    {'name': 'Pickup', 'url': 'assets/icons/Tags.svg'},
-    {'name': 'Tìm kiếm', 'url': 'assets/icons/Magnifying-glass.svg'},
-    {'name': 'Ưu đãi', 'url': 'assets/icons/Percent.svg'},
-    {'name': 'Đơn hàng', 'url': 'assets/icons/Bag-shopping.svg'},
+    {'name': 'Khám phá', 'url': AppIcon.icCompass},
+    {'name': 'Pickup', 'url': AppIcon.icTags},
+    {'name': 'Tìm kiếm', 'url': AppIcon.icMagnifyingGlass},
+    {'name': 'Ưu đãi', 'url': AppIcon.icPercent},
+    {'name': 'Đơn hàng', 'url': AppIcon.icBagShopping},
   ];
 
   @override
@@ -71,13 +72,13 @@ class _GoPFoodState extends State<GoPFoodPage> {
 
   void _onItemTapped(int index) {
     _pageController.jumpToPage(index);
-    print("_onItemTapped $index");
+    // print("_onItemTapped $index");
   }
 
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    print("_onPageChanged $index");
+    // print("_onPageChanged $index");
   }
 }

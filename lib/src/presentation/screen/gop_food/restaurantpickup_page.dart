@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gop_mobile_ui/core/app_color.dart';
+import 'package:gop_mobile_ui/core/app_image.dart';
 import 'package:gop_mobile_ui/src/presentation/screen/gop_food/restaurant_page.dart';
+
+import '../../../../core/app_icon.dart';
 
 class RestaurantPickupPage extends StatefulWidget {
   const RestaurantPickupPage({super.key});
@@ -66,7 +69,7 @@ class _RestaurantPickupState extends State<RestaurantPickupPage> {
                   const Text("Vị trí của bạn",
                       style: TextStyle(color: Colors.grey, fontSize: 12)),
                   const SizedBox(width: 5),
-                  _imgSVG('assets/icons/Chevron-down.svg', 12, 12, Colors.red),
+                  _imgSVG(AppIcon.icChevronDown, 12, 12, Colors.red),
                 ],
               ),
               Text(location,
@@ -99,28 +102,19 @@ class _RestaurantPickupState extends State<RestaurantPickupPage> {
     return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(children: [
-          _deliciousFoodButton(
-              'assets/images/food_categories/com_nong_sot.png', "Cơm nóng sốt",
+          _deliciousFoodButton(AppImage.imgComNongSot, "Cơm nóng sốt",
               isFirst: true),
-          _deliciousFoodButton(
-              'assets/images/food_categories/nong_hoi_xi_xup.png',
-              "Nóng hổi xì xụp"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/banh_mi_ngon.png', "Bánh mì ngon"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/my_vi_hai_san.png',
-              "Mỹ vị hải sản"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/thuc_an_nhanh.png',
-              "Thức ăn nhanh"),
-          _deliciousFoodButton(
-              'assets/images/food_categories/tra_sua_ngot.png', "Trà sữa ngọt"),
+          _deliciousFoodButton(AppImage.imgNongHoiXiXup, "Nóng hổi xì xụp"),
+          _deliciousFoodButton(AppImage.imgBanhMiNgon, "Bánh mì ngon"),
+          _deliciousFoodButton(AppImage.imgMyViHaiSan, "Mỹ vị hải sản"),
+          _deliciousFoodButton(AppImage.imgThucAnNhanh, "Thức ăn nhanh"),
+          _deliciousFoodButton(AppImage.imgTraSuaNgot, "Trà sữa ngọt"),
         ]));
   }
 
   Widget _deliciousFoodButton(String url, String name, {bool isFirst = false}) {
     return Container(
-        margin: isFirst ? EdgeInsets.only(left: 0) : EdgeInsets.only(left: 15),
+        margin: EdgeInsets.only(left: isFirst ? 0 : 15),
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -219,7 +213,8 @@ class _RestaurantPickupState extends State<RestaurantPickupPage> {
     return GestureDetector(
       onTap: () {
         // Navigator.pop(context);
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RestaurantPage()));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const RestaurantPage()));
       },
       child: Container(
           height: height * 0.1,
