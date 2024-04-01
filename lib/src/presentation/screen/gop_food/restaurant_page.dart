@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gop_mobile_ui/core/app_color.dart';
+import 'package:gop_mobile_ui/src/presentation/screen/gop_food/foodtopping_page.dart';
 import 'package:intl/intl.dart';
 
 class RestaurantPage extends StatefulWidget {
@@ -335,7 +336,7 @@ class _RestaurantState extends State<RestaurantPage> {
             fixedSize: const Size(70, 20),
             padding: const EdgeInsets.all(0.0),
             side: const BorderSide(color: AppColor.primaryColor, width: 1.5)),
-        onPressed: () {},
+        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FoodToppingPage()));},
         child: const Text("Thêm",
             style: TextStyle(color: AppColor.primaryColor, fontSize: 14)));
   }
