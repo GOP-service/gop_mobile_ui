@@ -14,28 +14,28 @@ class ValidateOperations {
     return null;
   }
 
-  static emailValidation(dynamic email) {
+  static bool emailValidation(String email) {
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
 
-    if (email == null || email.isEmpty || !emailValid) {
-      return 'Invalid email address';
+    if (email.isEmpty || !emailValid) {
+      return false;
     }
-    return null;
+    return true;
   }
 
-  static passwordValidation(dynamic password) {
-    if (password == null || password.isEmpty || password.length < 6) {
-      return 'Password must be at least 6 characters';
+  static bool passwordValidation(String password) {
+    if (password.isEmpty || password.length < 6) {
+      return false;
     }
-    return null;
+    return true;
   }
 
-  static otpValidation(dynamic otp) {
-    if (otp == null || otp.isEmpty || otp.length != 6) {
-      return 'Invalid OTP';
+  static bool otpValidation(String otp) {
+    if (otp.isEmpty || otp.length != 6) {
+      return false;
     }
-    return null;
+    return true;
   }
 }

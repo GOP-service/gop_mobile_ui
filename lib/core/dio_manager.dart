@@ -1,29 +1,29 @@
 import 'package:dio/dio.dart';
 
 class DioManager {
-  static DioManager? _instance;
+  late final Dio _dio;
 
-  static DioManager get instance {
-    if (_instance != null) return _instance!;
-    _instance = DioManager._init();
-    return _instance!;
-  }
+  final String _baseUrl =
+      'https://api-gateway.purplesand-fad3fa4f.southeastasia.azurecontainerapps.io';
 
-  final String _baseUrl = 'https://api-gateway.purplesand-fad3fa4f.southeastasia.azurecontainerapps.io';
-  late final Dio dio;
-
-  DioManager._init() {
-    dio = Dio(
+  DioManager() {
+    _dio = Dio(
       BaseOptions(
         baseUrl: _baseUrl,
       ),
     );
   }
 
-  void setToken(String token) {
-    dio.interceptors.clear();
+  Dio get dio => _dio;
 
-    dio.interceptors.add(
+  void clearToken() {
+    _dio.interceptors.clear();
+  }
+
+  void setToken(String token) {
+    _dio.interceptors.clear();
+
+    _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
           options.headers['Authorization'] = 'Bearer $token';

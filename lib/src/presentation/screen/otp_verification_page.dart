@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gop_mobile_ui/core/app_color.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gop_passenger/core/app_color.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPVerificationPage extends StatefulWidget {
@@ -20,13 +21,18 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
         centerTitle: true,
         backgroundColor: AppColor.lightGreyColor,
         elevation: 0,
-        title: const Text('Verification', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600)),
+        title: const Text('Verification',
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.w600)),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
           icon: SvgPicture.asset('assets/icons/Arrow-left.svg'),
-        ), systemOverlayStyle: SystemUiOverlayStyle.light,
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       body: ListView(
         shrinkWrap: true,
@@ -34,6 +40,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
         physics: const BouncingScrollPhysics(),
         children: [
           Container(
+            alignment: Alignment.center,
             margin: const EdgeInsets.only(top: 20, bottom: 8),
             child: const Text(
               'Email verification',
@@ -48,17 +55,22 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
             margin: const EdgeInsets.only(bottom: 32),
             child: Wrap(
               direction: Axis.horizontal,
-              alignment: WrapAlignment.spaceBetween ,
+              alignment: WrapAlignment.spaceBetween,
               runSpacing: 8,
               children: [
                 Text(
                   'OTP Code sent to your email',
-                  style: TextStyle(color: AppColor.primaryColor.withOpacity(0.7), fontSize: 14),
+                  style: TextStyle(
+                      color: AppColor.blackColor.withOpacity(0.7),
+                      fontSize: 14),
                 ),
                 const SizedBox(width: 8),
                 const Text(
                   'youremail@email.com',
-                  style: TextStyle(color: AppColor.primaryColor, fontSize: 14, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      color: AppColor.blackColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700),
                 ),
               ],
             ),
@@ -81,39 +93,45 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 32, bottom: 16),
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                foregroundColor: AppColor.primaryColor.withOpacity(0.1),
+              ),
+              child: Text(
+                'Resend OTP Code !',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: AppColor.blackColor.withOpacity(0.5),
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 16, bottom: 16),
             child: ElevatedButton(
               onPressed: () {
                 // Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageSwitcher()));
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18), backgroundColor: AppColor.primaryColor,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
+                backgroundColor: AppColor.primaryColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
                 elevation: 0,
                 shadowColor: Colors.transparent,
               ),
               child: const Text(
                 'Verify',
-                style: TextStyle(color: AppColor.whiteColor, fontWeight: FontWeight.w600, fontSize: 18),
+                style: TextStyle(
+                    color: AppColor.whiteColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18),
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              foregroundColor: AppColor.primaryColor, padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18), backgroundColor: AppColor.primaryColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              elevation: 0,
-              shadowColor: Colors.transparent,
-            ),
-            child: const Text(
-              'Resend OTP Code',
-              style: TextStyle(
-                color: AppColor.whiteColor,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+          )
         ],
       ),
     );

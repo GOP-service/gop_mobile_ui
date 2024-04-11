@@ -1,6 +1,5 @@
-package com.example.gop_mobile_ui
+package com.example.gop_passenger
 
 import io.flutter.embedding.android.FlutterActivity
 
-class MainActivity: FlutterActivity() {
-}
+class MainActivity: FlutterActivity()

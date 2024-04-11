@@ -1,21 +1,11 @@
 part of 'auth_bloc.dart';
 
-class AuthEvent {}
+sealed class AuthEvent {}
 
 class AuthStarted extends AuthEvent {}
 
 class AuthSigninStarted extends AuthEvent {
   AuthSigninStarted({
-    required this.email,
-    required this.password,
-  });
-
-  final String email;
-  final String password;
-}
-
-class AuthSigninPrefilled extends AuthEvent {
-  AuthSigninPrefilled({
     required this.email,
     required this.password,
   });
@@ -46,7 +36,4 @@ class AuthVerifyOTPStarted extends AuthEvent {
   final String otp;
 }
 
-
-class AuthAuthenticateStarted extends AuthEvent {}
-
-class AuthLogoutStarted extends AuthEvent {}
+class AuthLogout extends AuthEvent {}
