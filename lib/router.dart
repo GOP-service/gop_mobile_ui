@@ -9,6 +9,7 @@ import 'package:gop_passenger/src/presentation/screen/otp_verification_page.dart
 import 'package:gop_passenger/src/presentation/screen/profile_page.dart';
 import 'package:gop_passenger/src/presentation/screen/signin_page.dart';
 import 'package:gop_passenger/src/presentation/screen/signup_page.dart';
+import 'package:gop_passenger/src/presentation/screen/profile_edit_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'RootNavigator');
@@ -82,10 +83,17 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/profile',
               builder: (context, state) => const ProfilePage(),
+              routes: [
+                GoRoute(
+                  path: 'edit',
+                  builder: (context, state) => const ProfileEditPage()
+                )
+              ]
             ),
           ],
         ),
-        
+
+
       ],
     ),
     // StatefulShellRoute.indexedStack(
