@@ -2,21 +2,20 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gop_passenger/core/app_color.dart';
 import 'package:gop_passenger/core/dio_manager.dart';
 import 'package:gop_passenger/router.dart';
 import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
 import 'package:gop_passenger/src/data/repository/auth_repository.dart';
-import 'package:gop_passenger/src/data/service/auth_service.dart';
+import 'package:gop_passenger/src/data/data_source/auth_controller.dart';
+import 'package:gop_passenger/src/presentation/widgets/loading_overlay.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final sf = await SharedPreferences.getInstance();
-  final dio = DioManager();
-
-  runApp(MyApp(sf: sf, dio: dio));
+  runApp(const MyApp());
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -29,17 +28,21 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.sf, required this.dio});
+  const MyApp({super.key});
 
-  final SharedPreferences sf;
-  final DioManager dio;
+  void showSnackBar(BuildContext context, String message) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          duration: const Duration(seconds: 2),
+          backgroundColor: AppColor.redColor,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AuthRepository(
-        authService: AuthService(dioManager: dio, sf: sf),
-      ),
+      create: (context) => AuthRepository(),
       child: BlocProvider(
         create: (context) => AuthBloc(context.read<AuthRepository>()),
         child: MaterialApp.router(

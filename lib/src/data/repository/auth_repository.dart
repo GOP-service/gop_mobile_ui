@@ -1,74 +1,86 @@
-import 'dart:developer';
-
+import 'dart:async';
+import 'package:gop_passenger/core/dio_manager.dart';
 import 'package:gop_passenger/core/result_type.dart';
+import 'package:gop_passenger/src/data/model/auth_model.dart';
+import 'package:gop_passenger/src/data/data_source/auth_controller.dart';
+import 'package:gop_passenger/src/data/data_source/local_data_source.dart';
 import 'package:gop_passenger/src/data/model/customer_model.dart';
-import 'package:gop_passenger/src/data/service/auth_service.dart';
+import "dart:developer" as developer;
 
 class AuthRepository {
-  final AuthService authService;
+  late final DioManager dioManager;
 
-  AuthRepository({required this.authService});
+  final StreamController<Failure> _authStreamController =
+      StreamController<Failure>();
 
-  Future<Result<void>> logout() async {
+  Stream get authStream => _authStreamController.stream;
+
+  AuthRepository() {
+    dioManager = DioManager(authSink: _authStreamController.sink);
+  }
+
+  late final AuthController authController =
+      AuthController(dioManager: dioManager);
+
+  void dispose() {
+    _authStreamController.close();
+  }
+
+  Future<Result> refresh() async {
     try {
-      authService.logout();
-      await authService.deleteToken();
+      return await dioManager.refreshToken();
     } catch (e) {
       return Failure(e.toString());
     }
-    return Success(null);
   }
 
-  Future<Result<void>> signin(String email, String password) async {
+  Future<Result> signin(String email, String password) async {
     try {
-      final token = await authService.signin(email, password);
-
-      await authService.saveAccessToken(token.accessToken);
-      await authService.saveRefreshToken(token.refreshToken);
-    } catch (e) {
-      log(e.toString());
-      return Failure(e.toString());
-    }
-    return Success(null);
-  }
-
-  Future<Result<void>> signup(
-      String email, String password, String fullName) async {
-    try {
-      await authService.signup(email, password, fullName);
-    } catch (e) {
-      log(e.toString());
-      return Failure(e.toString());
-    }
-    return Success(null);
-  }
-
-  Future<Result<void>> verifyOTP(String email, String otp) async {
-    try {
-      await authService.verifyOTP(email, otp);
-    } catch (e) {
-      log(e.toString());
-      return Failure(e.toString());
-    }
-    return Success(null);
-  }
-
-  Future<Result<void>> refresh() async {
-    try {
-      authService.refreshToken();
+      final response = await authController.signin(email, password);
+      final token = AuthModel.fromJson(response.data);
+      await LocalDataSource().saveToken(token.accessToken, token.refreshToken);
       return Success(null);
     } catch (e) {
-      log(e.toString());
       return Failure(e.toString());
     }
   }
 
-  Future<Result<CustomerModel>> getProfile() async {
+  Future<Result> signup(String email, String password, String fullName) async {
     try {
-      return Success(await authService.getProfile());
+      await authController.signup(email, password, fullName);
     } catch (e) {
-      log(e.toString());
       return Failure(e.toString());
     }
+    return Success(null);
+  }
+
+  Future<Result> verifyOTP(String email, String otp) async {
+    try {
+      await authController.verifyOTP(email, otp);
+    } catch (e) {
+      return Failure(e.toString());
+    }
+    return Success(null);
+  }
+
+  Future<Result> logout() async {
+    try {
+      await LocalDataSource().deleteToken();
+    } catch (e) {
+      return Failure(e.toString());
+    }
+    return Success(null);
+  }
+
+  Future<Result> getProfile() async {
+    try {
+      final response = await authController.getProfile();
+      if (response is Success) {
+        return Success(CustomerModel.fromJson(response.data));
+      }
+    } catch (e) {
+      return Failure(e.toString());
+    }
+    return Failure('Failed to get profile');
   }
 }

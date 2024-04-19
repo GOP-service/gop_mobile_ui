@@ -7,6 +7,7 @@ import 'package:gop_passenger/src/presentation/screen/notification_page.dart';
 import 'package:gop_passenger/src/presentation/screen/order_history_page.dart';
 import 'package:gop_passenger/src/presentation/screen/otp_verification_page.dart';
 import 'package:gop_passenger/src/presentation/screen/profile_page.dart';
+import 'package:gop_passenger/src/presentation/screen/profile_page_detail.dart';
 import 'package:gop_passenger/src/presentation/screen/signin_page.dart';
 import 'package:gop_passenger/src/presentation/screen/signup_page.dart';
 
@@ -39,13 +40,12 @@ final GoRouter appRouter = GoRouter(
               key: state.pageKey,
               child: const OTPVerificationPage(),
             )),
-    
+
     // home
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
-            BottomNav(navigationShell: navigationShell),
+          BottomNav(navigationShell: navigationShell),
       branches: [
-
         //Home
         StatefulShellBranch(
           routes: [
@@ -82,10 +82,23 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/profile',
               builder: (context, state) => const ProfilePage(),
+              routes: [
+                GoRoute(
+                  path: 'details',
+                  builder: (context, state) =>
+                      const DetailsScreen(label: 'Profile lụm'),
+                ),
+                GoRoute(
+                  path: 'odee',
+                  builder: (context, state) => const ProfileDetailsScreen(
+                    label: 'Profile odeeeee',
+                    withScaffold: false,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-        
       ],
     ),
     // StatefulShellRoute.indexedStack(
@@ -190,8 +203,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
         // `navigationShell.route.branches`.
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.inventory_2), label: 'Orders'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notifications'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.inventory_2), label: 'Orders'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications), label: 'Notifications'),
         ],
         currentIndex: navigationShell.currentIndex,
         onTap: (int index) => _onTap(context, index),

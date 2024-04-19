@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gop_passenger/core/app_color.dart';
 import 'package:gop_passenger/core/result_type.dart';
+import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
 import 'package:gop_passenger/src/data/model/customer_model.dart';
 import 'package:gop_passenger/src/data/repository/auth_repository.dart';
 import 'package:gop_passenger/src/presentation/widgets/staggered_dots_wave.dart';
@@ -15,19 +16,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //late final CustomerModel _customerModel;
-
-  Future<void> _getProfile() async {
-    Result result = await context.read<AuthRepository>().getProfile();
-    if (result is Success) {
-      //   _customerModel = result.data as CustomerModel;
-    }
+  CustomerModel? _customerModel;
+  void _getprofile() async {
+    await context.read<AuthRepository>().getProfile().then((value) {
+      if (value is Success) {
+        setState(() {
+          _customerModel = value.data as CustomerModel;
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text((value as Failure).message),
+          ),
+        );
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    _getProfile();
+    _getprofile();
   }
 
   @override
@@ -41,9 +50,23 @@ class _HomePageState extends State<HomePage> {
           children: [
             TextButton(
                 onPressed: () {
-                  context.go('/');
+                  context
+                      .read<AuthBloc>()
+                      .add(AuthLogout(message: ' ố deeeeeeeee'));
                 },
                 child: const Text('LOGOUTTTTTTTT!!!')),
+            if (_customerModel == null)
+              TextButton(
+                  onPressed: () => _getprofile(),
+                  child: const Text('Loading...'))
+            else
+              Column(
+                children: [
+                  Text('Name: ${_customerModel!.fullName}'),
+                  Text('Email: ${_customerModel!.email}'),
+                  Text('Phone: ${_customerModel!.phone}'),
+                ],
+              ),
           ],
         ),
       ),

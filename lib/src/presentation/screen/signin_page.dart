@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gop_passenger/core/app_color.dart';
 import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
-import 'package:gop_passenger/src/presentation/screen/bottom_nav.dart';
+import 'package:gop_passenger/src/data/repository/auth_repository.dart';
 import 'package:gop_passenger/src/presentation/widgets/loading_overlay.dart';
-import 'package:gop_passenger/src/presentation/widgets/staggered_dots_wave.dart';
+import "dart:developer" as developer;
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -23,7 +23,9 @@ class _SigninPageState extends State<SigninPage> {
   @override
   void initState() {
     super.initState();
+    developer.log("Trying to refresh token. 1");
     context.read<AuthBloc>().add(AuthStarted());
+    // context.read<AuthRepository>().refresh();
   }
 
   void _toggle() {
@@ -38,16 +40,18 @@ class _SigninPageState extends State<SigninPage> {
       listener: (context, state) {
         if (state is AuthLoading) {
           Loader.show(context);
-        } else if (state is AuthAuthenticateSuccess) {
-          Loader.hide();
+        } else if (state is Authenticated) {
           context.go('/home');
-        } else if (state is AuthAuthenticateNeedVerify) {
           Loader.hide();
-          context.push('/verify');
+        } else if (state is Unauthenticated) {
+          Loader.hide();
         } else if (state is AuthAuthenticateFailure) {
           Loader.hide();
-          if (state.message == 'Token is empty') return;
-          _showSnackBar(context, state.message);
+          if (state.message.isNotEmpty == true) {
+            context
+                .read<AuthBloc>()
+                .add(ShowSnackBar(context: context, message: state.message));
+          }
         }
       },
       child: Scaffold(
@@ -137,16 +141,6 @@ class _SigninPageState extends State<SigninPage> {
               ),
             ],
           )),
-    );
-  }
-
-  void _showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 2),
-        backgroundColor: AppColor.redColor,
-      ),
     );
   }
 
@@ -266,10 +260,10 @@ class _SigninPageState extends State<SigninPage> {
             onPressed: () {
               if (emailController0.text.isEmpty ||
                   passwordController0.text.isEmpty) {
-                _showSnackBar(context, 'Email and password are required');
+                context.read<AuthBloc>().add(
+                    ShowSnackBar(context: context, message: 'Fill all fields'));
                 return;
               }
-              // context.push('/home');
               context.read<AuthBloc>().add(AuthSigninStarted(
                   email: emailController0.text,
                   password: passwordController0.text));

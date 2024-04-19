@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gop_passenger/core/app_color.dart';
 import 'package:gop_passenger/core/result_type.dart';
 import 'package:gop_passenger/core/validate_operations.dart';
 import 'package:gop_passenger/src/data/repository/auth_repository.dart';
+import "dart:developer" as developer;
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -12,20 +17,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSigninStarted>(_onSigninStarted);
     on<AuthSignupStarted>(_onSignupStarted);
     on<AuthVerifyOTPStarted>(_onVerifyOTPStarted);
+    on<AuthLogout>(_onLogout);
+    on<ShowSnackBar>(
+        (event, emit) => _showSnackBar(event.context, event.message));
+
+    authRepository.authStream.listen((event) {
+      if (event is Failure) {
+        add(AuthLogout());
+      }
+    });
   }
 
   final AuthRepository authRepository;
 
-  void _onStarted(AuthStarted event, Emitter<AuthState> emit) async {
-    //emit(AuthLoading());
-    // final result = await authRepository.refresh();
-    // return (switch (result) {
-    //   Success() => emit(AuthAuthenticateSuccess()),
-    //   Failure() => emit(AuthAuthenticateFailure(result.message)),
-    // });
+  void _showSnackBar(BuildContext context, String message) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          duration: const Duration(seconds: 2),
+          backgroundColor: AppColor.redColor,
+        ),
+      );
+
+  FutureOr<void> _onStarted(AuthStarted event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    final result = await authRepository.refresh();
+    return (switch (result) {
+      Success() => emit(Authenticated()),
+      Failure() => emit(AuthAuthenticateFailure(result.message)),
+    });
   }
 
-  void _onSigninStarted(
+  FutureOr<void> _onSigninStarted(
       AuthSigninStarted event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     if (!ValidateOperations.emailValidation(event.email)) {
@@ -36,17 +59,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
     final result = await authRepository.signin(event.email, event.password);
     return (switch (result) {
-      Success() => emit(AuthAuthenticateSuccess()),
+      Success() => emit(Authenticated()),
       Failure() => {
           if (result.message == 'need_verify')
-            {emit(AuthAuthenticateNeedVerify())}
+            {emit(AuthAuthenticateFailure('Please verify your email'))}
           else
             {emit(AuthAuthenticateFailure(result.message))}
         }
     });
   }
 
-  void _onSignupStarted(
+  FutureOr<void> _onSignupStarted(
       AuthSignupStarted event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     final result = await authRepository.signup(
@@ -57,13 +80,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
   }
 
-  void _onVerifyOTPStarted(
+  FutureOr<void> _onVerifyOTPStarted(
       AuthVerifyOTPStarted event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     final result = await authRepository.verifyOTP(event.email, event.otp);
     return (switch (result) {
       Success() => emit(AuthVerifyOTPSuccess()),
       Failure() => emit(AuthVerifyOTPFailure(result.message)),
+    });
+  }
+
+  FutureOr<void> _onLogout(AuthLogout event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    final result = await authRepository.logout();
+    return (switch (result) {
+      Success() => emit(Unauthenticated()),
+      Failure() => emit(Unauthenticated()),
     });
   }
 }

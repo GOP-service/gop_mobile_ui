@@ -17,25 +17,32 @@ class CustomerModel {
       required this.avatar});
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) {
+    CustomerprofileModel profile =
+        CustomerprofileModel.fromJson(json['profile']);
+
     return CustomerModel(
-        accountId: json['accountId'],
-        fullName: json['fullName'],
+        accountId: json['account_id'],
+        fullName: json['full_name'],
         email: json['email'],
         phone: json['phone'],
-        address: json['profile.address'],
-        gender: json['profile.gender'],
-        avatar: json['profile.avatar']);
+        address: profile.address,
+        gender: profile.gender,
+        avatar: profile.avatar);
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'accountId': accountId,
-      'fullName': fullName,
-      'email': email,
-      'phone': phone,
-      'address': address,
-      'gender': gender,
-      'avatar': avatar
-    };
+class CustomerprofileModel {
+  final String address;
+  final bool gender;
+  final String avatar;
+
+  CustomerprofileModel(
+      {required this.address, required this.gender, required this.avatar});
+
+  factory CustomerprofileModel.fromJson(Map<String, dynamic> json) {
+    return CustomerprofileModel(
+        address: json['address'],
+        gender: json['gender'],
+        avatar: json['avatar']);
   }
 }

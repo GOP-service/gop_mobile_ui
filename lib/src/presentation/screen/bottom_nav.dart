@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gop_passenger/core/app_color.dart';
+import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
 import 'package:gop_passenger/src/presentation/widgets/staggered_dots_wave.dart';
 
 class BottomNav extends StatelessWidget {
@@ -11,22 +13,35 @@ class BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: navigationShell,
-        bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: AppColor.primaryColor,
-            unselectedItemColor: AppColor.blackColor,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.inventory_2), label: 'Orders'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.notifications), label: 'Notifications'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: 'Profile'),
-            ],
-            currentIndex: navigationShell.currentIndex,
-            onTap: (int index) => _onTap(context, index)));
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is Unauthenticated) {
+          context.go('/');
+          if (state.message?.isNotEmpty == true) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.message!),
+              duration: const Duration(seconds: 2),
+            ));
+          }
+        }
+      },
+      child: Scaffold(
+          body: navigationShell,
+          bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: AppColor.primaryColor,
+              unselectedItemColor: AppColor.blackColor,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.inventory_2), label: 'Orders'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.notifications), label: 'Notifications'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person), label: 'Profile'),
+              ],
+              currentIndex: navigationShell.currentIndex,
+              onTap: (int index) => _onTap(context, index))),
+    );
   }
 
   void _onTap(BuildContext context, int index) {

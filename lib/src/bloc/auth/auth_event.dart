@@ -36,4 +36,20 @@ class AuthVerifyOTPStarted extends AuthEvent {
   final String otp;
 }
 
-class AuthLogout extends AuthEvent {}
+class AuthLogout extends AuthEvent {
+  AuthLogout({
+    this.message,
+  });
+
+  final String? message;
+}
+
+class ShowSnackBar extends AuthEvent {
+  ShowSnackBar({
+    required this.context,
+    required this.message,
+  });
+
+  final BuildContext context;
+  final String message;
+}
