@@ -4,6 +4,7 @@ import 'package:gop_passenger/core/app_color.dart';
 import 'package:gop_passenger/src/presentation/screen/bottom_nav.dart';
 import 'package:gop_passenger/src/presentation/screen/home_page.dart';
 import 'package:gop_passenger/src/presentation/screen/notification_page.dart';
+import 'package:gop_passenger/src/presentation/screen/order_detail_item.dart';
 import 'package:gop_passenger/src/presentation/screen/order_history_page.dart';
 import 'package:gop_passenger/src/presentation/screen/otp_verification_page.dart';
 import 'package:gop_passenger/src/presentation/screen/profile_page.dart';
@@ -63,6 +64,12 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/orders',
               builder: (context, state) => const OrderHistoryPage(),
+                routes: [
+                  GoRoute(
+                      path: 'orderhistoryitem',
+                      builder: (context, state) => const OrderDetailItem()
+                  )
+                ]
             ),
           ],
         ),
@@ -76,19 +83,18 @@ final GoRouter appRouter = GoRouter(
             ),
           ],
         ),
-
-        //Profile
+//Profile
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/profile',
-              builder: (context, state) => const ProfilePage(),
-              routes: [
-                GoRoute(
-                  path: 'edit',
-                  builder: (context, state) => const ProfileEditPage()
-                )
-              ]
+                path: '/profile',
+                builder: (context, state) => const ProfilePage(),
+                routes: [
+                  GoRoute(
+                      path: 'edit',
+                      builder: (context, state) => const ProfileEditPage()
+                  )
+                ]
             ),
           ],
         ),
