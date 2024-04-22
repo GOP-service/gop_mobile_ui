@@ -29,10 +29,4 @@ class AuthController {
     return await dioManager.dio.post('/auth/verify-otp',
         data: OTPVerifyModel(email: email, otp: otp).toJson());
   }
-
-  Future<Result> getProfile() async {
-    return await dioManager.toggleRequest((token) async {
-      return await dioManager.get('/auth/profile/customer', token);
-    }, 'get profile');
-  }
 }

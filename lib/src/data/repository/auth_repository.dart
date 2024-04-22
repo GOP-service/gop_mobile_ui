@@ -8,7 +8,7 @@ import 'package:gop_passenger/src/data/model/customer_model.dart';
 import "dart:developer" as developer;
 
 class AuthRepository {
-  late final DioManager dioManager;
+  late final DioManager _dioManager;
 
   final StreamController<Failure> _authStreamController =
       StreamController<Failure>();
@@ -16,11 +16,13 @@ class AuthRepository {
   Stream get authStream => _authStreamController.stream;
 
   AuthRepository() {
-    dioManager = DioManager(authSink: _authStreamController.sink);
+    _dioManager = DioManager(authSink: _authStreamController.sink);
   }
 
   late final AuthController authController =
-      AuthController(dioManager: dioManager);
+      AuthController(dioManager: _dioManager);
+
+  DioManager get dio => _dioManager;
 
   void dispose() {
     _authStreamController.close();
@@ -28,7 +30,7 @@ class AuthRepository {
 
   Future<Result> refresh() async {
     try {
-      return await dioManager.refreshToken();
+      return await _dioManager.refreshToken();
     } catch (e) {
       return Failure(e.toString());
     }
@@ -70,17 +72,5 @@ class AuthRepository {
       return Failure(e.toString());
     }
     return Success(null);
-  }
-
-  Future<Result> getProfile() async {
-    try {
-      final response = await authController.getProfile();
-      if (response is Success) {
-        return Success(CustomerModel.fromJson(response.data));
-      }
-    } catch (e) {
-      return Failure(e.toString());
-    }
-    return Failure('Failed to get profile');
   }
 }

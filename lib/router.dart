@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gop_passenger/core/app_color.dart';
 import 'package:gop_passenger/src/presentation/screen/bottom_nav.dart';
 import 'package:gop_passenger/src/presentation/screen/home_page.dart';
+import 'package:gop_passenger/src/presentation/screen/map_page.dart';
 import 'package:gop_passenger/src/presentation/screen/notification_page.dart';
 import 'package:gop_passenger/src/presentation/screen/order_history_page.dart';
 import 'package:gop_passenger/src/presentation/screen/otp_verification_page.dart';
@@ -52,6 +53,13 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/home',
               builder: (context, state) => const HomePage(),
+              routes: [
+                GoRoute(
+                  path: 'map/:param',
+                  builder: (context, GoRouterState state) =>
+                      MapPage(type: state.pathParameters['param']),
+                ),
+              ],
             ),
           ],
         ),
@@ -89,10 +97,11 @@ final GoRouter appRouter = GoRouter(
                       const DetailsScreen(label: 'Profile lụm'),
                 ),
                 GoRoute(
-                  path: 'odee',
-                  builder: (context, state) => const ProfileDetailsScreen(
+                  path: 'odee/:param',
+                  builder: (context, GoRouterState state) =>
+                      ProfileDetailsScreen(
                     label: 'Profile odeeeee',
-                    withScaffold: false,
+                    param: state.pathParameters['param'],
                   ),
                 ),
               ],

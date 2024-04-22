@@ -8,6 +8,7 @@ class DioManager {
   late final Dio _dio;
   StreamSink<Failure> authSink;
 
+  // final String _baseLocalUrl = 'http://172.16.1.101:8080/';
   final String _baseUrl =
       'https://api-gateway.purplesand-fad3fa4f.southeastasia.azurecontainerapps.io';
 
@@ -26,7 +27,7 @@ class DioManager {
       final refreshToken = await LocalDataSource().getRefreshToken();
 
       if (refreshToken == '') {
-        return Failure('No refresh token found');
+        return Failure('NO_REFRESH_TOKEN');
       }
 
       final response = await _dio.post('/auth/refresh',

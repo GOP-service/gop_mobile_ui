@@ -48,9 +48,11 @@ class _SigninPageState extends State<SigninPage> {
         } else if (state is AuthAuthenticateFailure) {
           Loader.hide();
           if (state.message.isNotEmpty == true) {
-            context
-                .read<AuthBloc>()
-                .add(ShowSnackBar(context: context, message: state.message));
+            if (state.message != 'NO_REFRESH_TOKEN') {
+              context
+                  .read<AuthBloc>()
+                  .add(ShowSnackBar(context: context, message: state.message));
+            }
           }
         }
       },
