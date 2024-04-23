@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 CircleAvatar(
                   radius: 50,
                   backgroundImage: NetworkImage(
-                      'https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-1/430890385_1574342683416473_47905620107369819_n.jpg?stp=dst-jpg_s320x320&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEN8kw77AcFtLB000vfG9DZv865VEU_A-O_zrlURT8D4zbI_CqlySp1j7HCkxDkL2fVXxSRZCeok3XtkDh3VAiS&_nc_ohc=gEr_wOA_4xwAb7_t9E-&_nc_ht=scontent.fsgn5-12.fna&oh=00_AfBlqNinv65-rm-aru0gxFiRo78wBZztLHyLe1OaK4_gxA&oe=6626B64B'),
+                      'https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-1/430890385_1574342683416473_47905620107369819_n.jpg?stp=dst-jpg_s320x320&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEN8kw77AcFtLB000vfG9DZv865VEU_A-O_zrlURT8D4zbI_CqlySp1j7HCkxDkL2fVXxSRZCeok3XtkDh3VAiS&_nc_ohc=WftgChfxLFkAb5Ucbie&_nc_ht=scontent.fsgn5-12.fna&oh=00_AfDhx4ThLbCHgjIf8rKKfXzABdKPps_n4XuOvw4iIOxpYQ&oe=662D4DCB'),
                 ),
                 SizedBox(width: 20),
                 Column(

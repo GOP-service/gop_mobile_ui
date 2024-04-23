@@ -8,12 +8,25 @@ class OrderHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Order History'),
+        title: const Text(
+          'Order History',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold, // Kiểu chữ đậm
+            fontSize: 25,
+          ),
+        ),
+        backgroundColor: Colors.greenAccent, // Đặt màu nền xanh
+        centerTitle: true, // Căn giữa tiêu đề trên AppBar
+
       ),
+      // backgroundColor: Colors.green[300], // Sử dụng màu cam nhạt từ palette của Flutter
+      backgroundColor: Colors.greenAccent,
       body: const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(height: 20,),
             OderHistoryCardItem(
               dropoffAddress: 'Trường ĐH SPKT TP.HCM',
               orderTime: '2021-10-10 10:10:10',
@@ -61,6 +74,7 @@ class OderHistoryCardItem extends StatelessWidget {
           children: <Widget>[
             Flexible(
               child: Card(
+                // color: Colors.orange[400],
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -116,4 +130,5 @@ class OderHistoryCardItem extends StatelessWidget {
       ),
     );
   }
+
 }
