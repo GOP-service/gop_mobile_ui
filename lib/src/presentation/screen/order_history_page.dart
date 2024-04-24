@@ -20,7 +20,6 @@ class OrderHistoryPage extends StatelessWidget {
           ),
           backgroundColor: Colors.white // Đặt màu nền xanh
           ),
-      // backgroundColor: Colors.green[300], // Sử dụng màu cam nhạt từ palette của Flutter
       body: const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,96 +65,97 @@ class OderHistoryCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        context.push('/orders/orderhistoryitem');
-      },
-      customBorder: BeveledRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: SizedBox(
-        width: 360,
-        // padding: EdgeInsets.all(10), // Thêm padding cho Container
-        child: Row(
-          children: <Widget>[
-            Flexible(
-              child: Card(
-                margin: const EdgeInsets.all(4.0),
-                surfaceTintColor: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: 10, bottom: 10), // Thêm padding cho Text
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.motorcycle, // Icon bạn muốn sử dụng
-                                    color: Colors.green, // Màu của icon
-                                  ),
-                                  SizedBox(
-                                      width:
-                                          5), // Khoảng cách giữa icon và text
-                                  Expanded(
-                                    child: Text(
-                                      dropoffAddress,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
+    return Center(
+      child: InkWell(
+        onTap: () {
+          context.push('/orders/orderhistoryitem');
+        },
+        customBorder: BeveledRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: SizedBox(
+          width: 370,
+          child: Row(
+            children: <Widget>[
+              Flexible(
+                child: Card(
+                  margin: const EdgeInsets.all(4.0),
+                  surfaceTintColor: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                top: 10, bottom: 10), // Thêm padding cho Text
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.motorcycle, // Icon bạn muốn sử dụng
+                                      color: Colors.green, // Màu của icon
+                                    ),
+                                    SizedBox(
+                                        width:
+                                        5), // Khoảng cách giữa icon và text
+                                    Expanded(
+                                      child: Text(
+                                        dropoffAddress,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                        overflow: TextOverflow
+                                            .ellipsis, // Ẩn một phần của văn bản và hiển thị dấu ba chấm khi quá dài
+                                        maxLines: 1, // Chỉ hiển thị một dòng
                                       ),
-                                      overflow: TextOverflow
-                                          .ellipsis, // Ẩn một phần của văn bản và hiển thị dấu ba chấm khi quá dài
-                                      maxLines: 1, // Chỉ hiển thị một dòng
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                  height: 5), // Thêm khoảng cách giữa hai Text
+                                  ],
+                                ),
+                                SizedBox(
+                                    height: 5), // Thêm khoảng cách giữa hai Text
 
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.access_time, // Icon bạn muốn sử dụng
-                                    color: Colors.orange, // Màu của icon
-                                  ),
-                                  SizedBox(
-                                      width:
-                                          5), // Khoảng cách giữa icon và text
-                                  Text(
-                                    orderTime,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black,
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.access_time, // Icon bạn muốn sử dụng
+                                      color: Colors.orange, // Màu của icon
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(
+                                        width:
+                                        5), // Khoảng cách giữa icon và text
+                                    Text(
+                                      orderTime,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        "$tripFare VND",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
+                        Text(
+                          "$tripFare VND",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

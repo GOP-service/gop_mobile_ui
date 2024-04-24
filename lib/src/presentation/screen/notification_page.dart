@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gop_passenger/core/app_color.dart';
 
 
 class NotificationPage extends StatelessWidget {
@@ -18,16 +19,16 @@ class NotificationPage extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        // backgroundColor: Colors.orange[200], // Đặt màu nền xanh
-        centerTitle: true, // Căn giữa tiêu đề trên AppBar
-
       ),
       backgroundColor: Colors.white,
       body: const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 20,),
+            Divider(
+              color: AppColor.blackColor,
+              thickness: BorderSide.strokeAlignCenter,
+            ),
             NotificationCardItem(
               notificationName: 'Tài xế đang đến vui lòng không chạy lung tung để tài xế dễ tìm ',
               notificationTime: '24/4/2024',
@@ -71,59 +72,61 @@ class _NotificationCardItemState extends State<NotificationCardItem> {
           isPressed = true;
         });
       },
-      child: SizedBox(
-        width: 360,
-        child: Row(
-          children: <Widget>[
-            Flexible(
-              child: Card(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.notifications,
-                                  color: isPressed ? Colors.orange : Colors.red,
-                                ),
-                                SizedBox(width: 5),
-                                Expanded(
-                                  child: Text(
-                                    widget.notificationName,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: isPressed ? Colors.black : Colors.black,
-                                      fontWeight: isPressed ? FontWeight.normal : FontWeight.bold,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
+      child: Center(
+        child: SizedBox(
+          width: 370,
+          child: Row(
+            children: <Widget>[
+              Flexible(
+                child: Card(
+                  margin: const EdgeInsets.all(4.0),
+                  surfaceTintColor: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.notifications,
+                                    color: isPressed ? Colors.orange : Colors.red,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 5),
+                                  Expanded(
+                                    child: Text(
+                                      widget.notificationName,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: isPressed ? Colors.black : Colors.black,
+                                        fontWeight: isPressed ? FontWeight.normal : FontWeight.bold,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Text(
-                          widget.notificationTime,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: isPressed ? Colors.black : Colors.black,
-                            fontWeight: isPressed ? FontWeight.normal : FontWeight.bold,
+                          Text(
+                            widget.notificationTime,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: isPressed ? Colors.black : Colors.black,
+                              fontWeight: isPressed ? FontWeight.normal : FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
