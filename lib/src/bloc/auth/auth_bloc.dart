@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gop_passenger/core/app_color.dart';
-import 'package:gop_passenger/core/result_type.dart';
-import 'package:gop_passenger/core/validate_operations.dart';
-import 'package:gop_passenger/src/data/repository/auth_repository.dart';
+import 'package:gop_driver/core/app_color.dart';
+import 'package:gop_driver/core/result_type.dart';
+import 'package:gop_driver/core/validate_operations.dart';
+import 'package:gop_driver/src/data/repository/auth_repository.dart';
 import "dart:developer" as developer;
 
 part 'auth_event.dart';

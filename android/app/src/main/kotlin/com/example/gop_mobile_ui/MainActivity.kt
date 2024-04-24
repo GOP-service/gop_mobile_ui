@@ -1,4 +1,4 @@
-package com.example.gop_passenger
+package com.example.gop_driver
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:gop_passenger/core/dio_manager.dart';
-import 'package:gop_passenger/core/result_type.dart';
-import 'package:gop_passenger/src/data/model/auth_model.dart';
-import 'package:gop_passenger/src/data/data_source/auth_controller.dart';
-import 'package:gop_passenger/src/data/data_source/local_data_source.dart';
-import 'package:gop_passenger/src/data/model/customer_model.dart';
+import 'package:gop_driver/core/dio_manager.dart';
+import 'package:gop_driver/core/result_type.dart';
+import 'package:gop_driver/src/data/model/auth_model.dart';
+import 'package:gop_driver/src/data/data_source/auth_controller.dart';
+import 'package:gop_driver/src/data/data_source/local_data_source.dart';
+import 'package:gop_driver/src/data/model/customer_model.dart';
 import "dart:developer" as developer;
 
 class AuthRepository {

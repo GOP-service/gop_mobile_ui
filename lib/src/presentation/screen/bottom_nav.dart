@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gop_passenger/core/app_color.dart';
-import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
-import 'package:gop_passenger/src/presentation/widgets/staggered_dots_wave.dart';
+import 'package:gop_driver/core/app_color.dart';
+import 'package:gop_driver/src/bloc/auth/auth_bloc.dart';
+import 'package:gop_driver/src/presentation/widgets/staggered_dots_wave.dart';
 
 class BottomNav extends StatelessWidget {
   const BottomNav({Key? key, required this.navigationShell})

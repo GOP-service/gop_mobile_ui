@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:gop_passenger/core/dio_manager.dart';
-import 'package:gop_passenger/core/result_type.dart';
-import 'package:gop_passenger/src/data/model/otp_verify_model.dart';
-import 'package:gop_passenger/src/data/model/signin_model.dart';
-import 'package:gop_passenger/src/data/model/signup_model.dart';
+import 'package:gop_driver/core/dio_manager.dart';
+import 'package:gop_driver/core/result_type.dart';
+import 'package:gop_driver/src/data/model/otp_verify_model.dart';
+import 'package:gop_driver/src/data/model/signin_model.dart';
+import 'package:gop_driver/src/data/model/signup_model.dart';
 
 class AuthController {
   final DioManager dioManager;

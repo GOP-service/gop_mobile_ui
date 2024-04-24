@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gop_passenger/core/app_color.dart';
-import 'package:gop_passenger/core/dio_manager.dart';
-import 'package:gop_passenger/router.dart';
-import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
-import 'package:gop_passenger/src/data/repository/auth_repository.dart';
-import 'package:gop_passenger/src/data/data_source/auth_controller.dart';
-import 'package:gop_passenger/src/presentation/widgets/loading_overlay.dart';
+import 'package:gop_driver/core/app_color.dart';
+import 'package:gop_driver/core/dio_manager.dart';
+import 'package:gop_driver/router.dart';
+import 'package:gop_driver/src/bloc/auth/auth_bloc.dart';
+import 'package:gop_driver/src/data/repository/auth_repository.dart';
+import 'package:gop_driver/src/data/data_source/auth_controller.dart';
+import 'package:gop_driver/src/presentation/widgets/loading_overlay.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {

@@ -1,6 +1,6 @@
 {
-    "name": "gop_passenger",
-    "short_name": "gop_passenger",
+    "name": "gop_driver",
+    "short_name": "gop_driver",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

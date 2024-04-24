@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gop_passenger/core/app_color.dart';
-import 'package:gop_passenger/src/presentation/screen/bottom_nav.dart';
-import 'package:gop_passenger/src/presentation/screen/home_page.dart';
-import 'package:gop_passenger/src/presentation/screen/notification_page.dart';
-import 'package:gop_passenger/src/presentation/screen/order_history_page.dart';
-import 'package:gop_passenger/src/presentation/screen/otp_verification_page.dart';
-import 'package:gop_passenger/src/presentation/screen/profile_page.dart';
-import 'package:gop_passenger/src/presentation/screen/profile_page_detail.dart';
-import 'package:gop_passenger/src/presentation/screen/signin_page.dart';
-import 'package:gop_passenger/src/presentation/screen/signup_page.dart';
+import 'package:gop_driver/core/app_color.dart';
+import 'package:gop_driver/src/presentation/screen/bottom_nav.dart';
+import 'package:gop_driver/src/presentation/screen/home_page.dart';
+import 'package:gop_driver/src/presentation/screen/notification_page.dart';
+import 'package:gop_driver/src/presentation/screen/order_history_page.dart';
+import 'package:gop_driver/src/presentation/screen/otp_verification_page.dart';
+import 'package:gop_driver/src/presentation/screen/profile_page.dart';
+import 'package:gop_driver/src/presentation/screen/profile_page_detail.dart';
+import 'package:gop_driver/src/presentation/screen/signin_page.dart';
+import 'package:gop_driver/src/presentation/screen/signup_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'RootNavigator');

@@ -1,8 +1,8 @@
 import 'dart:async';
 import "dart:developer" as developer;
 import 'package:dio/dio.dart';
-import 'package:gop_passenger/core/result_type.dart';
-import 'package:gop_passenger/src/data/data_source/local_data_source.dart';
+import 'package:gop_driver/core/result_type.dart';
+import 'package:gop_driver/src/data/data_source/local_data_source.dart';
 
 class DioManager {
   late final Dio _dio;

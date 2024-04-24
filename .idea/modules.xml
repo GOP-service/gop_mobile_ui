@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/gop_passenger.iml" filepath="$PROJECT_DIR$/gop_passenger.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/gop_passenger_android.iml" filepath="$PROJECT_DIR$/android/gop_passenger_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gop_driver.iml" filepath="$PROJECT_DIR$/gop_driver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/gop_driver_android.iml" filepath="$PROJECT_DIR$/android/gop_driver_android.iml" />
     </modules>
   </component>
 </project>

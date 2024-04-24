@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gop_passenger/core/app_color.dart';
-import 'package:gop_passenger/src/bloc/auth/auth_bloc.dart';
-import 'package:gop_passenger/src/data/repository/auth_repository.dart';
-import 'package:gop_passenger/src/presentation/widgets/loading_overlay.dart';
+import 'package:gop_driver/core/app_color.dart';
+import 'package:gop_driver/src/bloc/auth/auth_bloc.dart';
+import 'package:gop_driver/src/data/repository/auth_repository.dart';
+import 'package:gop_driver/src/presentation/widgets/loading_overlay.dart';
 import "dart:developer" as developer;
 
 class SigninPage extends StatefulWidget {
