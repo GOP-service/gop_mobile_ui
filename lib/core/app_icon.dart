@@ -26,4 +26,8 @@ class AppIcon {
   static const String icMoneyBills = "assets/icons/Money-bills.svg";
   static const String icCreditCard = "assets/icons/Credit-card.svg";
   static const String icLocationCrosshairs = "assets/icons/Location-crosshairs.svg";
+  static const String icCcPaypal = "assets/icons/Cc-paypal.svg";
+  static const String icSadFace = "assets/icons/Sad-face.svg";
+
+
 }
