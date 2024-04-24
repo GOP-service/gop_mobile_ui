@@ -46,13 +46,23 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Điểm đến: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.location_on, // Icon bạn muốn sử dụng
+                                color: Colors.red, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Điểm đến: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(
@@ -78,13 +88,23 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Điểm đón: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.location_on, // Icon bạn muốn sử dụng
+                                color: Colors.black, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Điểm đón: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(
@@ -110,13 +130,23 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Chi phí:" + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.attach_money, // Icon bạn muốn sử dụng
+                                color: Colors.red, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Chi phí: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(
@@ -125,7 +155,7 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    '38.000' + 'đ',
+                                    '38.000' + ' VND',
                                     style: TextStyle(
                                       fontSize: 16,
                                       // fontWeight: FontWeight.bold,
@@ -142,45 +172,23 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Thời gian đặt xe: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Flexible(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 5), // Thêm padding cho Text
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    '1 thg 1 2024, 16:20',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      // fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.access_time, // Icon bạn muốn sử dụng
+                                color: Colors.black, // Màu của icon
                               ),
-                            ),
-                          ),
-
-                        ],
-                      ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "   " + "Thời gian hoàn thành: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Giờ đặt xe: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(
@@ -206,13 +214,65 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Loại xe: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.access_time, // Icon bạn muốn sử dụng
+                                color: Colors.red, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Giờ hoàn thành: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Flexible(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10, top: 10, bottom: 10, right: 5), // Thêm padding cho Text
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    '1 thg 1 2024, 16:20',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
+                          ),
+
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.motorcycle, // Icon bạn muốn sử dụng
+                                color: Colors.black, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Loại xe: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(
@@ -238,13 +298,23 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Tài xế: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.person, // Icon bạn muốn sử dụng
+                                color: Colors.orange, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Tài xế: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(
@@ -270,13 +340,23 @@ class _OrderDetailItemState extends State<OrderDetailItem> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "   " + "Biển số xe: " + " ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(width: 5,),
+                              Icon(
+                                Icons.motorcycle, // Icon bạn muốn sử dụng
+                                color: Colors.blueGrey, // Màu của icon
+                              ),
+                              SizedBox(width: 5), // Khoảng cách giữa icon và text
+                              Text(
+                                "Biển số xe: ",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                           Flexible(
                             child: Padding(

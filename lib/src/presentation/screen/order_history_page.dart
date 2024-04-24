@@ -28,7 +28,7 @@ class OrderHistoryPage extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 20,),
             OderHistoryCardItem(
-              dropoffAddress: 'Trường ĐH SPKT TP.HCM',
+              dropoffAddress: 'Trường đại học sư phạm kỹ thuật Thành Phố Hồ Chí Minh',
               orderTime: '2021-10-10 10:10:10',
               tripFare: '100000',
             ),
@@ -91,22 +91,43 @@ class OderHistoryCardItem extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  dropoffAddress,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.motorcycle, // Icon bạn muốn sử dụng
+                                      color: Colors.green, // Màu của icon
+                                    ),
+                                    SizedBox(width: 5), // Khoảng cách giữa icon và text
+                                    Expanded(
+                                      child: Text(
+                                        dropoffAddress,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                        ),
+                                        overflow: TextOverflow.ellipsis, // Ẩn một phần của văn bản và hiển thị dấu ba chấm khi quá dài
+                                        maxLines: 1, // Chỉ hiển thị một dòng
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                    height:
-                                        5), // Thêm khoảng cách giữa hai Text
-                                Text(
-                                  orderTime,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                  ),
+                                SizedBox(height: 5), // Thêm khoảng cách giữa hai Text
+
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.access_time, // Icon bạn muốn sử dụng
+                                      color: Colors.orange, // Màu của icon
+                                    ),
+                                    SizedBox(width: 5), // Khoảng cách giữa icon và text
+                                    Text(
+                                      orderTime,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -121,6 +142,7 @@ class OderHistoryCardItem extends StatelessWidget {
                         ),
                       ],
                     ),
+
                   ],
                 ),
               ),
